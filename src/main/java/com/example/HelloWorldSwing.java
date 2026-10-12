@@ -1,6 +1,10 @@
 package com.example;
 
-import javax.swing.*;        
+import javax.swing.*;    
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;  
+
 
 public class HelloWorldSwing {
     /**
@@ -8,17 +12,40 @@ public class HelloWorldSwing {
      * this method should be invoked from the
      * event-dispatching thread.
      */
+
     private static void createAndShowGUI() {
+
+        
         //Create and set up the window.
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setSize(new Dimension(400, 400));
+        JPanel content = new JPanel();
         //Add the ubiquitous "Hello World" label.
-        JLabel label = new JLabel("Hello World");
-        frame.getContentPane().add(label);
+        JLabel label = new JLabel("hello world");
+      //  frame.getContentPane().add(label);
+        label.setVisible(true);
+        label.setPreferredSize(new Dimension(100, 100));
+
+        //Add the "Press Me" button.
+        JButton button = new JButton("press me");
+        button.setPreferredSize(new Dimension(100, 50));
+        button.addActionListener(new ActionListener() {
+        
+                public void actionPerformed(ActionEvent e) {
+                    label.setText("you did it");
+                }
+        });
+     
+        //Add the grid layout
+        content.setLayout(new GridLayout(2,4));
+        content.add(button);
+        content.add(label);
+        frame.add(content);
+        //Add the menu bar at the top of my applet
+
 
         //Display the window.
-        frame.pack();
         frame.setVisible(true);
     }
 
