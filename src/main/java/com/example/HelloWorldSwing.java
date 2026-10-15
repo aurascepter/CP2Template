@@ -15,12 +15,11 @@ public class HelloWorldSwing {
 
     private static void createAndShowGUI() {
 
-        
         //Create and set up the window.
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(400, 400));
-        JPanel content = new JPanel();
+        JPanel screen = new JPanel();
         //Add the ubiquitous "Hello World" label.
         JLabel label = new JLabel("hello world");
         label.setVisible(true);
@@ -55,13 +54,10 @@ public class HelloWorldSwing {
         });
      
         //Add the grid layout
-        content.setLayout(new GridLayout(5,1));
-        content.setLocation(200, 200);
-        content.add(button);
-        content.add(buttonTwo);
-        content.add(buttonThree);
-        content.add(label);
-        frame.add(content);
+        screen.setLayout(new GridLayout(5,1));
+        screen.setLocation(200, 200);
+    
+        frame.add(screen);
 
         //Add the menu bar at the top of my applet
         JMenuBar menuBar = new JMenuBar();
@@ -70,25 +66,26 @@ public class HelloWorldSwing {
         menuBar.add(fileMenu);
         JMenuItem menuItem = new JMenuItem("The Best");
         fileMenu.add(menuItem);
-        content.add(menuBar);
+        screen.add(menuBar);
+        screen.add(button);
+        screen.add(buttonTwo);
+        screen.add(buttonThree);
+        screen.add(label);
 
         // New Screen 
 
         JPanel secondScreen = new JPanel();
-        JFrame secondFrame = new JFrame("Best Java Programmer");
+       // JFrame secondFrame = new JFrame("Best Java Programmer");
         JLabel secondLabel = new JLabel("Soul Yoon is the best Java Coder ever");
-        secondFrame.setPreferredSize(new Dimension(150, 100));
-        secondLabel.setPreferredSize(new Dimension(150, 100));
-        secondScreen.add(secondFrame);
         secondScreen.add(secondLabel);
-
+        secondScreen.setVisible(true);
+     
         menuItem.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
-                secondScreen.setVisible(true);
-
+                screen.setVisible(false);
+                frame.setContentPane(secondScreen);
             }
-
         });
 
         //Display the window.
